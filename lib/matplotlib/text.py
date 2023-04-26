@@ -757,6 +757,7 @@ class Text(Artist):
             gc.set_foreground(self.get_color())
             gc.set_alpha(self.get_alpha())
             gc.set_url(self._url)
+            gc.set_antialiased(self._antialiased)
             self._set_gc_clip(gc)
 
             angle = self.get_rotation()

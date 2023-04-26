@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.transforms as mtransforms
 from matplotlib.testing.decorators import check_figures_equal, image_comparison
 from matplotlib.testing._markers import needs_usetex
-from matplotlib.text import Text
+from matplotlib.text import Text, Annotation
 
 
 @image_comparison(['font_styles'])
@@ -906,3 +906,18 @@ def test_get_antialiased():
     txt3 = Text(.5, .5, "foo\nbar", antialiased=False)
     assert txt3._antialiased == False
     assert txt3.get_antialiased() == txt3._antialiased
+
+def test_annotation_antialiased():
+    annot = Annotation("foo\nbar", (.5, .5), antialiased=True)
+    assert annot._antialiased == True
+    assert annot.get_antialiased() == annot._antialiased
+
+    annot2 = Annotation("foo\nbar", (.5, .5), antialiased=False)
+    assert annot2._antialiased == False
+    assert annot2.get_antialiased() == annot2._antialiased
+
+
+    annot3 = Annotation("foo\nbar", (.5, .5), antialiased=False)
+    annot3.set_antialiased(True)
+    assert annot3.get_antialiased() == True
+    assert annot3._antialiased == True
