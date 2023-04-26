@@ -886,3 +886,23 @@ def test_metrics_cache():
     # Every string gets a miss for the first layouting (extents), then a hit
     # when drawing, but "foo\nbar" gets two hits as it's drawn twice.
     assert info.hits > info.misses
+
+def test_set_antialiased():
+    txt = Text(.5, .5, "foo\nbar")
+    assert txt._antialiased == None
+
+    txt.set_antialiased(True)
+    assert txt._antialiased == True
+
+    txt.set_antialiased(False)
+    assert txt._antialiased == False
+
+def test_get_antialiased():
+
+    txt2 = Text(.5, .5, "foo\nbar", antialiased=True)
+    assert txt2._antialiased == True
+    assert txt2.get_antialiased() == txt2._antialiased
+
+    txt3 = Text(.5, .5, "foo\nbar", antialiased=False)
+    assert txt3._antialiased == False
+    assert txt3.get_antialiased() == txt3._antialiased

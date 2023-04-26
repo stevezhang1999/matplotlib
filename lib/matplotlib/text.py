@@ -115,6 +115,7 @@ class Text(Artist):
                  wrap=False,
                  transform_rotates_text=False,
                  parse_math=None,    # defaults to rcParams['text.parse_math']
+                 antialiased=None,
                  **kwargs
                  ):
         """
@@ -135,6 +136,7 @@ class Text(Artist):
         super().__init__()
         self._x, self._y = x, y
         self._text = ''
+        self._antialiased = None
         self._reset_visual_defaults(
             text=text,
             color=color,
@@ -149,6 +151,7 @@ class Text(Artist):
             transform_rotates_text=transform_rotates_text,
             linespacing=linespacing,
             rotation_mode=rotation_mode,
+            antialiased=antialiased
         )
         self.update(kwargs)
 
@@ -167,6 +170,7 @@ class Text(Artist):
         transform_rotates_text=False,
         linespacing=None,
         rotation_mode=None,
+        antialiased=None
     ):
         self.set_text(text)
         self.set_color(
@@ -187,6 +191,7 @@ class Text(Artist):
             linespacing = 1.2  # Maybe use rcParam later.
         self.set_linespacing(linespacing)
         self.set_rotation_mode(rotation_mode)
+        self.set_antialiased(antialiased)
 
     def update(self, kwargs):
         # docstring inherited
@@ -308,6 +313,21 @@ class Text(Artist):
     def get_rotation_mode(self):
         """Return the text rotation mode."""
         return self._rotation_mode
+
+    def set_antialiased(self, b):
+        """
+        Set whether to use antialiased rendering.
+
+        Parameters
+        ----------
+        b : bool
+        """
+        self._antialiased = b
+        self.stale = True
+
+    def get_antialiased(self):
+        """Return whether antialiased rendering is used."""
+        return self._antialiased
 
     def update_from(self, other):
         # docstring inherited
