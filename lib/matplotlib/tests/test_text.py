@@ -887,37 +887,39 @@ def test_metrics_cache():
     # when drawing, but "foo\nbar" gets two hits as it's drawn twice.
     assert info.hits > info.misses
 
+
 def test_set_antialiased():
     txt = Text(.5, .5, "foo\nbar")
-    assert txt._antialiased == None
+    assert txt._antialiased is None
 
     txt.set_antialiased(True)
-    assert txt._antialiased == True
+    assert txt._antialiased is True
 
     txt.set_antialiased(False)
-    assert txt._antialiased == False
+    assert txt._antialiased is False
+
 
 def test_get_antialiased():
 
     txt2 = Text(.5, .5, "foo\nbar", antialiased=True)
-    assert txt2._antialiased == True
+    assert txt2._antialiased is True
     assert txt2.get_antialiased() == txt2._antialiased
 
     txt3 = Text(.5, .5, "foo\nbar", antialiased=False)
-    assert txt3._antialiased == False
+    assert txt3._antialiased is False
     assert txt3.get_antialiased() == txt3._antialiased
+
 
 def test_annotation_antialiased():
     annot = Annotation("foo\nbar", (.5, .5), antialiased=True)
-    assert annot._antialiased == True
+    assert annot._antialiased is True
     assert annot.get_antialiased() == annot._antialiased
 
     annot2 = Annotation("foo\nbar", (.5, .5), antialiased=False)
-    assert annot2._antialiased == False
+    assert annot2._antialiased is False
     assert annot2.get_antialiased() == annot2._antialiased
-
 
     annot3 = Annotation("foo\nbar", (.5, .5), antialiased=False)
     annot3.set_antialiased(True)
-    assert annot3.get_antialiased() == True
-    assert annot3._antialiased == True
+    assert annot3.get_antialiased() is True
+    assert annot3._antialiased is True
