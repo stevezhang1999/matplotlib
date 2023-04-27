@@ -309,6 +309,9 @@ class GraphicsContextCairo(GraphicsContextBase):
         self.ctx.set_antialias(
             cairo.ANTIALIAS_DEFAULT if b else cairo.ANTIALIAS_NONE)
 
+    def get_antialiased(self):
+        return self.ctx.get_antialias()
+
     def set_capstyle(self, cs):
         self.ctx.set_line_cap(_api.check_getitem(self._capd, capstyle=cs))
         self._capstyle = cs
