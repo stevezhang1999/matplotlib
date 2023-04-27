@@ -192,7 +192,7 @@ class Text(Artist):
         self.set_linespacing(linespacing)
         self.set_rotation_mode(rotation_mode)
         if antialiased is not None:
-            self.set_antialiased(antialiased)        
+            self.set_antialiased(antialiased)
 
     def update(self, kwargs):
         # docstring inherited
