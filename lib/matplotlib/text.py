@@ -136,7 +136,7 @@ class Text(Artist):
         super().__init__()
         self._x, self._y = x, y
         self._text = ''
-        self._antialiased = None
+        self._antialiased = mpl.rcParams['text.antialiased']
         self._reset_visual_defaults(
             text=text,
             color=color,
@@ -191,9 +191,8 @@ class Text(Artist):
             linespacing = 1.2  # Maybe use rcParam later.
         self.set_linespacing(linespacing)
         self.set_rotation_mode(rotation_mode)
-        if antialiased is None:
-            antialiased = mpl.rcParams['text.antialiased']
-        self.set_antialiased(antialiased)
+        if antialiased is not None:
+            self.set_antialiased(antialiased)        
 
     def update(self, kwargs):
         # docstring inherited
@@ -322,7 +321,7 @@ class Text(Artist):
 
         Parameters
         ----------
-        b : bool or None
+        b : bool
         """
         self._antialiased = b
         self.stale = True

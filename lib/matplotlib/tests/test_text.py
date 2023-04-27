@@ -909,6 +909,9 @@ def test_get_antialiased():
     assert txt3._antialiased is False
     assert txt3.get_antialiased() == txt3._antialiased
 
+    txt4 = Text(.5, .5, "foo\nbar")
+    assert txt4.get_antialiased() == mpl.rcParams['text.antialiased']
+
 
 def test_annotation_antialiased():
     annot = Annotation("foo\nbar", (.5, .5), antialiased=True)
@@ -923,3 +926,6 @@ def test_annotation_antialiased():
     annot3.set_antialiased(True)
     assert annot3.get_antialiased() is True
     assert annot3._antialiased is True
+
+    annot4 = Annotation("foo\nbar", (.5, .5))
+    assert annot4._antialiased == mpl.rcParams['text.antialiased']
