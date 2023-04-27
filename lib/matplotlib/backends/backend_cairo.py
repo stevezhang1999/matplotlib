@@ -204,9 +204,7 @@ class RendererCairo(RendererBase):
             ctx.select_font_face(*_cairo_font_args_from_font_prop(prop))
             ctx.set_font_size(self.points_to_pixels(prop.get_size_in_points()))
             opts = cairo.FontOptions()
-            opts.set_antialias(
-                cairo.ANTIALIAS_DEFAULT if mpl.rcParams["text.antialiased"]
-                else cairo.ANTIALIAS_NONE)
+            opts.set_antialias(gc.get_antialiased())
             ctx.set_font_options(opts)
             if angle:
                 ctx.rotate(np.deg2rad(-angle))
