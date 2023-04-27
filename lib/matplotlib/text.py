@@ -320,7 +320,7 @@ class Text(Artist):
 
         Parameters
         ----------
-        b : bool
+        b : bool or None
         """
         self._antialiased = b
         self.stale = True
