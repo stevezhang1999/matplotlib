@@ -890,7 +890,7 @@ def test_metrics_cache():
 
 def test_set_antialiased():
     txt = Text(.5, .5, "foo\nbar")
-    assert txt._antialiased is None
+    assert txt._antialiased == mpl.rcParams['text.antialiased']
 
     txt.set_antialiased(True)
     assert txt._antialiased is True

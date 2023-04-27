@@ -191,6 +191,8 @@ class Text(Artist):
             linespacing = 1.2  # Maybe use rcParam later.
         self.set_linespacing(linespacing)
         self.set_rotation_mode(rotation_mode)
+        if antialiased is None:
+            antialiased = mpl.rcParams['text.antialiased']
         self.set_antialiased(antialiased)
 
     def update(self, kwargs):
