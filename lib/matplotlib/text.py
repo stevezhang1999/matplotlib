@@ -115,7 +115,7 @@ class Text(Artist):
                  wrap=False,
                  transform_rotates_text=False,
                  parse_math=None,    # defaults to rcParams['text.parse_math']
-                 antialiased=None,
+                 antialiased=None,     # defaults to rcParams['text.parse_math']
                  **kwargs
                  ):
         """
