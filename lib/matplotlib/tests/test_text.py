@@ -929,3 +929,31 @@ def test_annotation_antialiased():
 
     annot4 = Annotation("foo\nbar", (.5, .5))
     assert annot4._antialiased == mpl.rcParams['text.antialiased']
+
+
+@check_figures_equal()
+def test_text_antialiased_off_default_vs_manual(fig_test, fig_ref):
+    # note that the field antialiased is for Text object
+    # therefore in the test we will make axis antialiasing identical
+    # which is determined by rcParams['text.antialiased'] when axis is created
+    # also note that there is no way to change this for axis after creating it
+
+    mpl.rcParams['text.antialiased'] = False
+    # axis: antialiased == rcParams['text.antialiased'] == False
+    # text: antialiased == False
+    fig_test.subplots().text(0.5, 0.5, '6 inches x 2 inches',
+                             antialiased=False)
+
+    mpl.rcParams['text.antialiased'] = False
+    # axis: antialiased == rcParams['text.antialiased'] == False
+    # text: antialiased == rcParams['text.antialiased'] == False
+    fig_ref.subplots().text(0.5, 0.5, '6 inches x 2 inches')
+
+
+@check_figures_equal()
+def test_text_antialiased_on_default_vs_manual(fig_test, fig_ref):
+    mpl.rcParams['text.antialiased'] = True
+    fig_test.subplots().text(0.5, 0.5, '6 inches x 2 inches', antialiased=True)
+
+    mpl.rcParams['text.antialiased'] = True
+    fig_ref.subplots().text(0.5, 0.5, '6 inches x 2 inches')

@@ -343,6 +343,7 @@ class Text(Artist):
         self._transform_rotates_text = other._transform_rotates_text
         self._picker = other._picker
         self._linespacing = other._linespacing
+        self._antialiased = other._antialiased
         self.stale = True
 
     def _get_layout(self, renderer):
