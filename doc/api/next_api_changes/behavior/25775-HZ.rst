@@ -1,13 +1,7 @@
-Support customizing antialiasing for text and annotation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Default antialiasing behavior changes for ``Text`` and ``Annotation`` 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-
-``matplotlib.pyplot.annotate()`` and ``matplotlib.pyplot.text()`` now support parameter ``antialiased``.
-When ``antialiased`` is set to ``True``, antialiasing will be applied to the text.
-When ``antialiased`` is set to ``False``, antialiasing will be applied to the text.
-When ``antialiased`` is not specified, it will use the value from ``rcParams['text.antialiased']``.
-
+``matplotlib.pyplot.annotate()`` and ``matplotlib.pyplot.text()`` now support parameter ``antialiased`` when initializing.
 Examples:
 
 .. code-block::
@@ -16,15 +10,6 @@ Examples:
     plt.text(0.5, 0.5, '6 inches x 2 inches', antialiased=True)
     ax.annotate('local max', xy=(2, 1), xytext=(3, 1.5), antialiased=False)
 
-If the text contains math expression, then anaialiasing will be applied by ``rcParams['text.antialiased']`` and ``antialiased`` will have no effect
-This applies to the whole text.
-Examples:
-
-.. code-block::
-
-    plt.text(0.5, 0.25, r"$I'm \sqrt{x}$", antialiased=False)
-
-Also note that antialiasing for coordinate axes will be set with ``rcParams['text.antialiased']`` when they are created and cannot be changed afterwards.
 
 With this new feature, you may want to make sure that you are creating and saving/showing the figure under the same context::
 
@@ -34,9 +19,10 @@ With this new feature, you may want to make sure that you are creating and savin
         ax.annotate('local max', xy=(2, 1), xytext=(3, 1.5))
         fig.savefig('/tmp/test.png')
 
-
     # previously this had an effect, now this is a no-op
     fig, ax = plt.subplots()
     ax.annotate('local max', xy=(2, 1), xytext=(3, 1.5))
     with rccontext(text.antialiased=False):
         fig.savefig('/tmp/test.png')
+    
+Also note that antialiasing for tick labeles will be set with ``rcParams['text.antialiased']`` when they are created (usually when a ``Figure`` is created) - This means antialiasing for them can no longer be changed by modifying ``rcParams['text.antialiased']``.
