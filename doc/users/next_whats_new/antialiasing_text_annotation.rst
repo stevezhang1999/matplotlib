@@ -1,10 +1,9 @@
 Support customizing antialiasing for text and annotation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------
 ``matplotlib.pyplot.annotate()`` and ``matplotlib.pyplot.text()`` now support parameter ``antialiased``.
 When ``antialiased`` is set to ``True``, antialiasing will be applied to the text.
 When ``antialiased`` is set to ``False``, antialiasing will not be applied to the text.
 When ``antialiased`` is not specified, antialiasing will be set by ``rcParams['text.antialiased']`` at the creation time of ``Text`` and ``Annotation`` object.
-
 Examples:
 
 .. code-block::
