@@ -322,6 +322,12 @@ class Text(Artist):
         Parameters
         ----------
         b : bool
+
+        Notes
+        -----
+        Antialiasing will be determined by ``rcParams['text.antialiased']``
+        and parameter ``antialiased`` will have no effect if the text contains
+        math expressions.
         """
         self._antialiased = b
         self.stale = True
